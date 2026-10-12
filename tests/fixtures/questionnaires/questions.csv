@@ -1,0 +1,5 @@
+Question,Answer,Notes
+"Is data encrypted, at rest and in transit?",Yes,AES-256 + TLS 1.3
+"List your subprocessors
+(one per line)","Sub A, Sub B",annual review
+Do you log admin actions?,Yes,sample retained 90 days

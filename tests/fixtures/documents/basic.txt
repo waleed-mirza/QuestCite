@@ -1,0 +1,4 @@
+QuestCite onboarding checklist
+
+Enable MFA for all admins.
+Review vendor list quarterly.

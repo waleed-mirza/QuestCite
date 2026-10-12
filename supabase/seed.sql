@@ -1,0 +1,3 @@
+-- Seed data (applied by `pnpm db:migrate:local`).
+-- Week 1: intentionally empty. Week 2 adds test tenants/users; the public demo
+-- tenant (plan §15) is seeded by scripts/seed-demo.ts in a later week.

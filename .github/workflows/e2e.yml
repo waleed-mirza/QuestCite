@@ -1,0 +1,60 @@
+name: E2E
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    name: Playwright · e2e + a11y
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Browser e2e (builds first)
+        env:
+          # Auth surfaces need the public project coordinates at build time.
+          # SUPABASE_SERVICE_ROLE_KEY is consumed ONLY by the E2E fixture
+          # helper (Node-side test code) to mint verification links — it is
+          # never referenced by app code, so browser bundles stay clean
+          # (Week 2 gate: no service-role key in bundles).
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.RUN_HOSTED_E2E == 'true' && secrets.NEXT_PUBLIC_SUPABASE_URL || '' }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.RUN_HOSTED_E2E == 'true' && secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || '' }}
+          NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL || 'http://127.0.0.1:3000' }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ vars.RUN_HOSTED_E2E == 'true' && secrets.SUPABASE_SERVICE_ROLE_KEY || '' }}
+          ALLOW_HOSTED_TEST_MUTATIONS: ${{ secrets.ALLOW_HOSTED_TEST_MUTATIONS }}
+          E2E_AUTH_JOURNEY: ${{ vars.RUN_HOSTED_E2E == 'true' && '1' || '' }}
+        run: pnpm test:e2e
+
+      - name: Accessibility (axe)
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.RUN_HOSTED_E2E == 'true' && secrets.NEXT_PUBLIC_SUPABASE_URL || '' }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.RUN_HOSTED_E2E == 'true' && secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || '' }}
+          NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL || 'http://127.0.0.1:3000' }}
+        run: pnpm test:a11y
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

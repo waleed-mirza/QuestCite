@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint · Typecheck · Unit · Coverage · Build · Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck (strict)
+        run: pnpm typecheck
+
+      - name: Unit tests + coverage thresholds
+        run: pnpm test:coverage
+
+      - name: Production build (includes env validation)
+        run: pnpm build
+
+      - name: Secret scan
+        run: pnpm scan:secrets
+
+      - name: Release audit (packaging exclusions + fixture fakes)
+        run: pnpm audit:release
+
+  # RLS/constraint matrix against the linked hosted project (D016 — no Docker).
+  # Fixtures self-clean; the service-role key is used SERVER-SIDE ONLY to
+  # provision confirmed test users. The job is explicitly opt-in because the
+  # linked project is production-promoted. Set RUN_HOSTED_DB_TESTS=true and
+  # provide the short-lived ALLOW_HOSTED_TEST_MUTATIONS secret only for a
+  # controlled run.
+  db-rls:
+    name: DB · RLS matrix
+    runs-on: ubuntu-latest
+    env:
+      APP_ENV: production
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      ALLOW_HOSTED_TEST_MUTATIONS: ${{ secrets.ALLOW_HOSTED_TEST_MUTATIONS }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: RLS + constraint + invitation suites
+        if: ${{ vars.RUN_HOSTED_DB_TESTS == 'true' && env.SUPABASE_SERVICE_ROLE_KEY != '' && env.ALLOW_HOSTED_TEST_MUTATIONS == 'true' }}
+        run: pnpm test:db
+
+      - name: Suite status
+        run: |
+          if [ "${{ vars.RUN_HOSTED_DB_TESTS }}" != "true" ]; then
+            echo "SKIP: RUN_HOSTED_DB_TESTS is not true; the linked project is production-promoted."
+          elif [ -z "$SUPABASE_SERVICE_ROLE_KEY" ] || [ "$ALLOW_HOSTED_TEST_MUTATIONS" != "true" ]; then
+            echo "SKIP: hosted DB tests require Supabase secrets plus the explicit ALLOW_HOSTED_TEST_MUTATIONS acknowledgement."
+          else
+            echo "RLS matrix executed."
+          fi

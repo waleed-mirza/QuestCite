@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-labelledby="t">
+  <title id="t">QuestCite</title>
+  <g stroke="#0B0B0B" stroke-width="3.15" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="8">
+    <circle cx="100" cy="100" r="78"/>
+    <path d="M67 32 V156"/>
+    <path d="M89 32 V156"/>
+    <path d="M111 32 V156"/>
+    <path d="M133 32 V156"/>
+    <path d="M67 32 H111"/>
+    <path d="M67 156 H111"/>
+    <path d="M111 32 L133 156"/>
+    <path d="M89 94 H133"/>
+    <path d="M111 32 H133"/>
+    <path d="M111 156 H133"/>
+  </g>
+</svg>
