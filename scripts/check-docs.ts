@@ -4,6 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const requiredFiles = [
   "README.md",
+  "LICENSE",
   "LICENSE.md",
   "SECURITY.md",
   "SUPPORT.md",
@@ -49,6 +50,7 @@ function main(): number {
   }
 
   const topLevelDocs = ["README.md", "LICENSE.md", "SECURITY.md", "SUPPORT.md", "CHANGELOG.md", "CONTRIBUTING.md"];
+  // LICENSE (no extension) is required for GitHub detection; LICENSE.md stays for docs links.
   const files = [
     ...topLevelDocs.map((file) => path.join(root, file)),
     ...markdownFiles(path.join(root, "docs")),
@@ -95,7 +97,12 @@ function main(): number {
     ["docs/demo-mode.md", "DEMO_EMAILS_ENABLED=false"],
     ["LICENSE.md", "MIT License"],
   ];
+  // Plain LICENSE is not Markdown; verify it separately below.
   const missingSnippets = requiredSnippets.filter(([file, snippet]) => !(contentByFile.get(file) ?? "").includes(snippet));
+  const licenseText = readFileSync(path.join(root, "LICENSE"), "utf8");
+  if (!licenseText.includes("MIT License")) {
+    missingSnippets.push(["LICENSE", "MIT License"]);
+  }
   if (broken.length > 0 || missingSnippets.length > 0) {
     if (broken.length > 0) {
       console.error(`Documentation check failed: ${broken.length} broken local link(s).`);

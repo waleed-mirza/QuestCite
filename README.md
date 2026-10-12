@@ -21,7 +21,7 @@ pnpm check-env
 pnpm dev
 ```
 
-Open <http://localhost:3000>. For a seller demo or a pre-customer verification,
+Open <http://localhost:3000>. For a public demo or a pre-customer verification,
 you can provision the fictional Northstar Cloud data in the linked Supabase
 project. Configure the three Supabase values in `.env.local`, then run:
 
@@ -119,13 +119,13 @@ failure recovery.
   hard limits.
 - [`docs/database-and-rls.md`](docs/database-and-rls.md) — schema and tenancy
   controls.
-- [`docs/billing.md`](docs/billing.md) — billing test mode, quotas, and
-  workspace lifecycle.
+- [`docs/billing.md`](docs/billing.md) — optional Lemon Squeezy workspace
+  billing, quotas, and lifecycle.
 - [`docs/trust-center.md`](docs/trust-center.md) — public sharing and gated
   downloads.
 - [`SECURITY.md`](SECURITY.md) — reporting and security invariants.
 - [`SUPPORT.md`](SUPPORT.md) — support policy and issue triage.
-- [`LICENSE.md`](LICENSE.md) — MIT License.
+- [`LICENSE`](LICENSE) — MIT License.
 
 ## Safe handling
 
@@ -133,9 +133,16 @@ Never commit `.env.local`, provider tokens, signed URLs, raw document content,
 questionnaire answers, prompts, or prospect tokens. Run `pnpm scan:secrets`
 and `pnpm audit:release` before sharing an archive.
 
+## Optional providers
+
+The app builds and runs without Lemon Squeezy, OpenAI, or Resend credentials.
+Leave the `LEMON_SQUEEZY_*` variables unset unless a self-hosted deployment
+wants in-app Starter/Pro/Agency workspace subscriptions for its own customers.
+See [`.env.example`](.env.example) and [`docs/billing.md`](docs/billing.md).
+
 ## License and support
 
-QuestCite is released under the [MIT License](LICENSE.md) by WHH Treasures.
+QuestCite is released under the [MIT License](LICENSE) by WHH Treasures.
 The repository does not provide legal, compliance, or security advice. Support
 expectations and the security contact are documented in
 [`SUPPORT.md`](SUPPORT.md) and [`SECURITY.md`](SECURITY.md).

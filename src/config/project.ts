@@ -1,6 +1,6 @@
 /** Public project facts used across marketing, legal, and support surfaces. */
 
-export const sellerConfig = {
+export const projectConfig = {
   legalName: "WHH Treasures",
   supportEmail: "whhtreasures@gmail.com",
   supportHref: "mailto:whhtreasures@gmail.com",

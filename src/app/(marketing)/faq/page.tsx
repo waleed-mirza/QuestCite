@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { sellerConfig } from "@/config/seller";
+import { projectConfig } from "@/config/project";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -11,13 +11,14 @@ export const metadata: Metadata = {
 
 const QUESTIONS = [
   ["Is QuestCite hosted?", "No. It is a self-hosted Next.js and Supabase application. You operate the deployment and provider accounts."],
-  ["How do I get the source?", "Clone the public GitHub repository. QuestCite is free under the MIT License. WHH Treasures does not sell the source or hosted accounts."],
+  ["How do I get the source?", "Clone the public GitHub repository. QuestCite is free under the MIT License. There is no paid source license or hosted QuestCite account from WHH Treasures."],
   ["Does the public demo send data to an AI provider?", "No. The fictional Northstar Cloud demo replays stored results locally. Upload, billing, email, deletion, and live AI actions are disabled."],
   ["Can AI approve an answer?", "No. AI produces a draft disposition only. Human review and approval remain required before export or external use."],
   ["What questionnaire files are supported?", "XLSX and CSV imports are supported, with documented size and cell limits. The original workbook is kept untouched for verified export."],
   ["Where does customer data live?", "In the Supabase project you select and operate. Configure region, backups, retention, access, and provider contracts for your obligations."],
   ["Does QuestCite provide a compliance certification?", "No. It is workflow software, not an audit opinion, certification, legal advice, or compliance guarantee. Every answer and citation needs qualified human validation."],
-  ["What does support include?", `The repository includes documentation and reproducible checks. Email ${sellerConfig.supportEmail} for product or security reports. There is no paid support plan or response-time guarantee.`],
+  ["Is Lemon Squeezy billing required?", "No. In-app Starter/Pro/Agency checkout is optional for self-hosted deployments that want workspace subscriptions. Leave the LEMON_SQUEEZY_* variables unset to run on local trial/free entitlements only."],
+  ["What does support include?", `The repository includes documentation and reproducible checks. Email ${projectConfig.supportEmail} for product or security reports. There is no paid support plan or response-time guarantee.`],
 ] as const;
 
 export default function FaqPage() {

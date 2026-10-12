@@ -24,8 +24,9 @@ rows live in the billing migration. If a limit changes, update the user-facing
 copy, database seed/fixtures, and quota tests together. Do not raise a hard
 database ceiling from a UI-only change.
 
-Starter/Pro/Agency checkout uses the server `LEMON_SQUEEZY_*` keys from
-[`billing.md`](billing.md). Leave those keys unset when checkout is disabled.
+Starter/Pro/Agency checkout is optional and uses the server `LEMON_SQUEEZY_*`
+keys from [`billing.md`](billing.md). Leave those keys unset unless this
+deployment enables workspace subscriptions; the app runs without them.
 
 ## Email
 

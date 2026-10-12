@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { sellerConfig } from "@/config/seller";
+import { projectConfig } from "@/config/project";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       <h1 className="mt-3 text-4xl font-bold tracking-tight">Privacy notice</h1>
       <p className="text-muted-foreground mt-4">
         Last updated October 12, 2026. This notice covers the public QuestCite demo operated by{" "}
-        {sellerConfig.legalName}. Each operator must publish a notice for its own deployment and actual data
+        {projectConfig.legalName}. Each operator must publish a notice for its own deployment and actual data
         practices.
       </p>
       <div className="mt-10 space-y-6">
@@ -23,10 +23,10 @@ export default function PrivacyPage() {
           <CardHeader><CardTitle>Who operates this demo?</CardTitle></CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              {sellerConfig.legalName} publishes the QuestCite marketing site and fictional, read-only demo. Contact
+              {projectConfig.legalName} publishes the QuestCite marketing site and fictional, read-only demo. Contact
               us at{" "}
-              <a className="text-foreground underline underline-offset-4" href={sellerConfig.supportHref}>
-                {sellerConfig.supportEmail}
+              <a className="text-foreground underline underline-offset-4" href={projectConfig.supportHref}>
+                {projectConfig.supportEmail}
               </a>{" "}
               with a privacy question about this site.
             </p>
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
             <p className="text-muted-foreground">
               The deployment operator selects and contracts with its hosting, Supabase, optional AI, email, and
               billing providers. It must collect only what it needs, set retention and deletion rules, secure access,
-              and respond to applicable privacy rights. For this public site, email {sellerConfig.supportEmail};
+              and respond to applicable privacy rights. For this public site, email {projectConfig.supportEmail};
               rights and available remedies depend on applicable law.
             </p>
           </CardContent>

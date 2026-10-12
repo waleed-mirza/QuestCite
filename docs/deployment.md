@@ -1,7 +1,7 @@
 # Deployment guide
 
 QuestCite deploys as a Next.js App Router application. The current public
-seller/demo host is Netlify at <https://questcite.netlify.app/>; Vercel remains
+demo host is Netlify at <https://questcite.netlify.app/>; Vercel remains
 compatible as an alternative host. Supabase is the reference database, auth,
 storage, and Postgres RPC provider.
 
@@ -49,8 +49,8 @@ AUDIT_HASH_SALT
 For a customer deployment, also set `DEMO_MODE=false`,
 `LIVE_DEMO_AI_ENABLED=false`, `DEMO_UPLOADS_ENABLED=false`, and
 `DEMO_EMAILS_ENABLED=false`. Configure `AI_ENABLED` and its OpenAI key only if
-the operator has approved live AI use. Keep billing test mode on until the
-webhook has been verified.
+the operator has approved live AI use. Lemon Squeezy billing is optional; if
+you enable it, keep test mode on until the webhook has been verified.
 
 `pnpm build` runs `pnpm check-env` first. Production boot fails on missing
 required values or dangerous demo mutation flags. Validation errors list
@@ -78,9 +78,9 @@ target.
 - Resend: optional. An operator that needs transactional email sets
   `EMAIL_DELIVERY_MODE=resend`, `RESEND_API_KEY`, and `EMAIL_FROM` in its own
   deployment. The public demo stays in `log` mode and requires no Resend account.
-- Workspace billing: optional. Omit `LEMON_SQUEEZY_API_KEY`, store, webhook,
-  and variant IDs unless this deployment enables checkout. The public demo
-  leaves them unset.
+- Workspace billing: optional. Omit every `LEMON_SQUEEZY_*` variable unless this
+  deployment sells Starter/Pro/Agency plans to its own customers. The app builds
+  and runs without them; the public demo leaves them unset.
 - Supabase: keep the service-role key in the server environment only; it is
   never a public `NEXT_PUBLIC_` value.
 
@@ -107,7 +107,7 @@ should use a new `DEMO_ORG_SLUG` only if it is intentionally running a separate
 demo, and must disable the public demo before handling real data.
 See [`demo-mode.md`](demo-mode.md) and [`SECURITY.md`](../SECURITY.md).
 
-For the seller/demo host, keep `AI_ENABLED=false` and leave
+For the public demo host, keep `AI_ENABLED=false` and leave
 `OPENAI_API_KEY` unset. The public `/demo` route is a local fixture replay and
 does not need an OpenAI credential. Never put a personal OpenAI key in a public
 deployment. If live AI is intentionally enabled for a controlled

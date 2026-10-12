@@ -53,8 +53,8 @@ test.describe("Week 8 billing journey", () => {
     const billingA11y = await new AxeBuilder({ page: owner }).analyze();
     expect(billingA11y.violations, JSON.stringify(billingA11y.violations, null, 2)).toEqual([]);
 
-    await owner.getByRole("button", { name: "Choose Starter" }).click();
-    await expect(owner.locator('p[role="alert"]')).toContainText("not configured");
+    await expect(owner.getByText("In-app billing is optional")).toBeVisible();
+    await expect(owner.getByText(/LEMON_SQUEEZY_/)).toBeVisible();
 
     const payload = JSON.stringify({
       meta: {

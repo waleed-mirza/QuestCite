@@ -2,8 +2,8 @@ import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 
 import { appConfig } from "@/config/app";
-import { sellerConfig } from "@/config/seller";
-import { SourceLink } from "@/components/storefront-buy-link";
+import { projectConfig } from "@/config/project";
+import { SourceLink } from "@/components/source-link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -47,14 +47,14 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
 
       <footer className="border-border/60 border-t">
         <div className="text-muted-foreground mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-8 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>© {new Date().getFullYear()} {sellerConfig.legalName}</p>
+          <p>© {new Date().getFullYear()} {projectConfig.legalName}</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <Link href="/pricing" className="hover:text-foreground transition-colors">Open source</Link>
             <Link href="/faq" className="hover:text-foreground transition-colors">FAQ</Link>
             <Link href="/docs" className="hover:text-foreground transition-colors">Docs</Link>
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
-            <a href={sellerConfig.supportHref} className="hover:text-foreground transition-colors">Support</a>
+            <a href={projectConfig.supportHref} className="hover:text-foreground transition-colors">Support</a>
           </div>
         </div>
       </footer>

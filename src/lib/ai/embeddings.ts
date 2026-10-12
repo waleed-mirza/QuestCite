@@ -5,7 +5,7 @@ import { sha256Text } from "@/lib/files/checksum";
 
 /**
  * Embedding adapter (plan §6/§9/§10). A small interface on purpose: tests use
- * a fake, a future buyer can swap providers, and nothing outside this module
+ * a fake, a future operator can swap providers, and nothing outside this module
  * knows OpenAI's wire format.
  *
  * Cost controls (plan §10): model is `text-embedding-3-small` by default,

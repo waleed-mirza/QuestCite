@@ -1,18 +1,22 @@
 # Billing, quotas, and workspace lifecycle
 
-Week 8 uses a hosted checkout provider. Supabase is the source
-of truth for the effective plan and usage limits. A checkout redirect never
-changes entitlements; the signed webhook route is the only subscription write
-boundary.
+In-app workspace billing is **optional**. Lemon Squeezy checkout, webhooks, and
+variant IDs exist so a self-hosted operator can sell Starter / Pro / Agency
+subscriptions to *their* customers. The QuestCite source itself is MIT licensed;
+you do not need any `LEMON_SQUEEZY_*` values to clone, build, or run the app.
 
-This adapter is **in-app workspace billing** (Starter / Pro / Agency
-subscriptions inside a self-hosted copy). The QuestCite source itself is MIT
-licensed and is not sold here. The public demo omits `LEMON_SQUEEZY_API_KEY`,
-store ID, webhook secret, and variant IDs entirely.
+When those variables are unset, workspaces stay on local trial/free entitlements,
+checkout is hidden, and the webhook route returns a safe “not configured”
+response. Supabase remains the source of truth for the effective plan and usage
+limits. A checkout redirect never changes entitlements; the signed webhook route
+is the only subscription write boundary.
 
-## Test mode setup
+The public demo omits `LEMON_SQUEEZY_API_KEY`, store ID, webhook secret, and
+variant IDs entirely.
 
-1. Create test-mode products and variants in the billing provider.
+## Optional setup (only if you want workspace subscriptions)
+
+1. Create test-mode products and variants in Lemon Squeezy.
 2. Uncomment the `LEMON_SQUEEZY_*` keys in `.env.example`, copy them into
    `.env.local`, and fill the test store ID, webhook signing secret, and
    numeric variant IDs.
@@ -26,8 +30,8 @@ store ID, webhook secret, and variant IDs entirely.
    ```
 
 The checkout API additionally needs `LEMON_SQUEEZY_API_KEY`. Until that key is
-configured, the billing page displays a safe “not configured” checkout error
-without making an external call.
+configured, the billing page explains that in-app billing is optional and does
+not call the provider.
 
 For a signed local fixture, use a real test workspace UUID and the test-mode
 secret. The command prints a JSON body followed by the `X-Signature` header;

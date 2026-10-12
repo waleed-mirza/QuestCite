@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { sellerConfig } from "@/config/seller";
+import { projectConfig } from "@/config/project";
 
 test.describe("Week 2 public-surface smoke", () => {
   test("landing page renders hero and navigation", async ({ page }) => {
@@ -36,9 +36,9 @@ test.describe("Week 2 public-surface smoke", () => {
   test("header and hero link to the public source repository", async ({ page }) => {
     await page.goto("/");
     const headerSource = page.getByRole("link", { name: "Source", exact: true });
-    const heroSource = page.getByRole("link", { name: "Get the source" });
-    await expect(headerSource).toHaveAttribute("href", sellerConfig.repositoryUrl);
-    await expect(heroSource).toHaveAttribute("href", sellerConfig.repositoryUrl);
+    const heroSource = page.getByRole("link", { name: "View on GitHub" });
+    await expect(headerSource).toHaveAttribute("href", projectConfig.repositoryUrl);
+    await expect(heroSource).toHaveAttribute("href", projectConfig.repositoryUrl);
   });
 
   test("explains the MIT license and self-hosted handoff", async ({ page }) => {
@@ -48,25 +48,16 @@ test.describe("Week 2 public-surface smoke", () => {
       page.getByText("MIT-licensed source. You install and host it.", { exact: true }),
     ).toBeVisible();
 
-    const card = page.getByRole("listitem").filter({ has: page.getByRole("heading", { name: "MIT License" }) });
-    await expect(card).toContainText("Best for");
-    await expect(card).toContainText("Teams that want to run questionnaire drafting on infrastructure they control.");
-    await expect(card).toContainText("You operate");
-    await expect(card).toContainText("Free");
-    await expect(card.getByRole("link", { name: "View source on GitHub" })).toHaveAttribute(
+    await expect(page.getByRole("heading", { name: "Free under the MIT License" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "View source on GitHub" })).toHaveAttribute(
       "href",
-      sellerConfig.repositoryUrl,
+      projectConfig.repositoryUrl,
     );
-
-    await expect(page.getByRole("heading", { name: "What you get from the repository" })).toBeVisible();
-    await expect(page.getByText("In the repository", { exact: true })).toBeVisible();
-    await expect(page.getByText("Setup preview", { exact: true })).toBeVisible();
-    await expect(page.getByText("You provide the hosting", { exact: true })).toBeVisible();
-    await expect(page.getByText("Support scope", { exact: true })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Take the signed-out tour" })).toHaveAttribute("href", "/demo");
+    await expect(page.getByRole("link", { name: "Self-host details" })).toHaveAttribute("href", "/pricing");
 
     await page.goto("/pricing");
-    await expect(page.getByRole("heading", { name: "What you get from the repository" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "What you operate" })).toBeVisible();
+    await expect(page.getByText(/Lemon Squeezy workspace billing are optional/)).toBeVisible();
   });
 
   test("marketing information routes render their primary headings", async ({ page }) => {
@@ -86,14 +77,13 @@ test.describe("Week 2 public-surface smoke", () => {
 
   test("pricing page links to the MIT source repository", async ({ page }) => {
     await page.goto("/pricing");
-    const catalog = page.getByRole("list", { name: "Open-source license" });
-    await expect(catalog.getByRole("link", { name: "View source on GitHub" })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "View source on GitHub" })).toHaveAttribute(
       "href",
-      sellerConfig.repositoryUrl,
+      projectConfig.repositoryUrl,
     );
   });
 
-  test("legal and support surfaces identify the seller", async ({ page }) => {
+  test("legal and support surfaces identify the maintainer", async ({ page }) => {
     await page.goto("/privacy");
     await expect(page.getByText("WHH Treasures", { exact: false }).first()).toBeVisible();
     await expect(page.getByRole("link", { name: "whhtreasures@gmail.com" })).toHaveAttribute(
