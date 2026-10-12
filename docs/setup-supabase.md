@@ -114,7 +114,7 @@ Complete this checklist before accepting real customer data:
 The project is promoted by configuration and operational controls; no data is
 copied or reset. Keep the pre-promotion backup and record the promotion date.
 
-For an intentional seller-hosted public demo, seed the fictional tenant once
+For an intentional maintainer-hosted public demo, seed the fictional tenant once
 before the freeze with the explicit production acknowledgement
 `ALLOW_DEMO_SEED_IN_PRODUCTION=true`, then remove that override. The same
 one-command acknowledgement (`ALLOW_HOSTED_TEST_MUTATIONS=true`) is required

@@ -2,9 +2,8 @@ import Link from "next/link";
 import { FileSpreadsheet, BookOpen, MessageSquareText } from "lucide-react";
 
 import { appConfig } from "@/config/app";
-import { LicenseCatalog } from "@/components/license-catalog";
-import { PurchaseProof } from "@/components/purchase-proof";
-import { SourceLink } from "@/components/storefront-buy-link";
+import { projectConfig } from "@/config/project";
+import { SourceLink } from "@/components/source-link";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -35,7 +34,7 @@ const FEATURES = [
 ] as const;
 
 const STEPS = [
-  { step: "01", title: "Import", body: "Drop in the buyer's .xlsx or .csv questionnaire, review the detected columns, and confirm the mapping." },
+  { step: "01", title: "Import", body: "Drop in the prospect's .xlsx or .csv questionnaire, review the detected columns, and confirm the mapping." },
   { step: "02", title: "Draft", body: "Answers are drafted from your approved knowledge base with citations to source passages." },
   { step: "03", title: "Review", body: "Your team approves, edits, or rejects each answer — with a full audit trail." },
   { step: "04", title: "Export", body: "Export the completed workbook and share your public Trust Center link." },
@@ -54,11 +53,11 @@ export default function LandingPage() {
           </h1>
           <p className="text-muted-foreground max-w-2xl text-lg text-balance">
             {appConfig.name} drafts answers from your own trusted documents — every claim cited, every
-            change reviewed, every export buyer-ready.
+            change reviewed, every export ready to send.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <SourceLink className={buttonVariants({ size: "lg" })}>
-              Get the source
+              View on GitHub
             </SourceLink>
             <Link href="/demo" className={buttonVariants({ variant: "outline", size: "lg" })}>
               Try the demo
@@ -91,7 +90,7 @@ export default function LandingPage() {
 
       <section id="how-it-works" className="bg-muted/40 scroll-mt-20 border-y">
         <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-          <h2 className="text-center text-3xl font-semibold tracking-tight">From buyer email to sent workbook</h2>
+          <h2 className="mt-0 text-center text-3xl font-semibold tracking-tight">From questionnaire to sent workbook</h2>
           <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((item) => (
               <li key={item.step} className="border-border/60 rounded-lg border bg-background p-6">
@@ -105,12 +104,24 @@ export default function LandingPage() {
       </section>
 
       <section id="open-source" className="scroll-mt-20">
-        <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-          <LicenseCatalog />
-          <div className="mt-12">
-            <PurchaseProof />
-          </div>
-          <div className="mt-10 flex justify-center">
+        <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 py-16 text-center sm:px-6 sm:py-24">
+          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">Open source</p>
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Free under the MIT License</h2>
+          <p className="text-muted-foreground text-base text-pretty sm:text-lg">
+            Clone the repository, modify it, and self-host it. You operate hosting, Supabase, and any
+            optional OpenAI, Resend, or billing provider you turn on. Support: {projectConfig.supportEmail}.
+          </p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a
+              href={projectConfig.repositoryUrl}
+              rel="noreferrer"
+              className={buttonVariants({ size: "lg" })}
+            >
+              View source on GitHub
+            </a>
+            <Link href="/pricing" className={buttonVariants({ variant: "outline", size: "lg" })}>
+              Self-host details
+            </Link>
             <Link href="/demo" className={buttonVariants({ variant: "outline", size: "lg" })}>
               Try the fictional demo
             </Link>

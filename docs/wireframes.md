@@ -27,7 +27,7 @@ Built: header (logo + shield icon; nav "Features", "How it works" on desktop onl
 |  | desc           |  | desc           |  | desc           |              |
 |  +----------------+  +----------------+  +----------------+              |
 +--------------------------------------------------------------------------+
-|  H2: From buyer email to sent workbook        (muted background band)    |
+|  H2: From questionnaire to sent workbook      (muted background band)    |
 |  [01 Import][02 Draft][03 Review][04 Export]  <- 4 steps                 |
 +--------------------------------------------------------------------------+
 |     H2: Ready to stop re-typing the same answers?   [ Get started ]      |
@@ -60,7 +60,7 @@ Mobile (single column; nav links hidden behind the `sm:` breakpoint, CTA buttons
 ```
 
 Annotations:
-- W2: primary CTAs move to `/signup`; add Pricing / FAQ / Docs / Legal links per plan §13 route list and §3 "Included in v1" (the initial legal placeholders were replaced by the WHH Treasures seller baseline before release).
+- W2: primary CTAs move to `/signup`; add Pricing / FAQ / Docs / Legal links per plan §13 route list and §3 "Included in v1" (the initial legal placeholders were replaced by the WHH Treasures project baseline before release).
 - Required states: none interactive yet; SEO metadata + Open Graph/social card are tested in W7 for the Trust Center and listed as a sales asset in plan §23.
 - Disclaimer that the product is not legal/compliance advice must appear on marketing before launch (plan §23).
 

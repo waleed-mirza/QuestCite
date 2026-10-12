@@ -6,7 +6,7 @@ import { MODEL_OUTPUT_JSON_SCHEMA } from "@/lib/validation/drafting";
 /**
  * Answer-provider adapter (plan §6/§10). The interface is the seam that keeps
  * the drafting service provider-agnostic and fully testable offline: tests
- * inject a fake, buyers can swap vendors, and only this module knows OpenAI's
+ * inject a fake, operators can swap vendors, and only this module knows OpenAI's
  * wire format.
  *
  * Data handling (plan §10): requests go through the Responses API with

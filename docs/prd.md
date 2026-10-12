@@ -10,7 +10,7 @@ QuestCite is an open-source Next.js application that a team deploys to answer cu
 
 ## 2. Value proposition
 
-Security questionnaires are answered by the same people, using the same approved documents, every week; the work is slow because evidence is scattered and because nobody trusts an answer they cannot trace. QuestCite makes the approved evidence the single source from which every answer is drafted, shows the exact source passage behind each claim, forces a human approval gate before anything leaves the building, and returns a buyer-ready workbook — so the same team answers in hours with a defensible trail instead of weeks from memory (plan §1). It is sold as source code the buyer owns, customizes, and deploys, with a working public demo (plan §1, §25).
+Security questionnaires are answered by the same people, using the same approved documents, every week; the work is slow because evidence is scattered and because nobody trusts an answer they cannot trace. QuestCite makes the approved evidence the single source from which every answer is drafted, shows the exact source passage behind each claim, forces a human approval gate before anything leaves the building, and returns a ready-to-send workbook — so the same team answers in hours with a defensible trail instead of weeks from memory (plan §1). It is MIT-licensed open source that operators clone, customize, and self-host, with a working public demo (plan §1, §25).
 
 ### Honest product promise (plan §1)
 
@@ -235,7 +235,7 @@ one transaction. Owner/admin revocation is idempotent and audited (D019).
 
 ## 9. v1 success criteria
 
-Traceable to the Week 10 release gate (plan §18 W10), "ready to sell" (plan §25), and the release quality promise (plan §1):
+Traceable to the Week 10 release gate (plan §18 W10), the self-host readiness bar (plan §25), and the release quality promise (plan §1):
 
 1. All ten Week-10 outcomes are demonstrable on a fresh installation: workspace + invites, knowledge upload, `.xlsx`/`.csv` import, evidence retrieval, grounded AI drafts with visible citations and uncertainty marking, human review, `.xlsx`/`.csv` export, published Trust Center with gated requests, and subscriptions with local limits (plan §1).
 2. All CI and release commands pass from a clean checkout; two clean-install rehearsals have succeeded (plan §18 W10).
@@ -246,6 +246,6 @@ Traceable to the Week 10 release gate (plan §18 W10), "ready to sell" (plan §2
 7. Automated tests prove private documents and internal metadata cannot leak through public Trust Center pages or downloads (plan §18 W7 gate).
 8. The live demo works without paid services except the controlled AI smoke test (plan §18 W10).
 9. The customer ZIP contains no secrets, private notes, real customer data, or unsupported claims (plan §18 W10).
-10. A buyer can purchase, install, configure, migrate, seed, test, deploy, rebrand, complete the flagship workflow, publish the sample Trust Center, and switch providers from test to live mode using documentation alone (plan §25).
+10. An operator can clone, install, configure, migrate, seed, test, deploy, rebrand, complete the flagship workflow, publish the sample Trust Center, and switch providers from test to live mode using documentation alone (plan §25).
 11. Every exclusion in §4 is disclosed on the sales page (plan §3, §24).
 12. Every empty/loading/error/permission state has usable UI; every destructive operation has confirmation, permission checks, and an audit record (plan §24, §16).

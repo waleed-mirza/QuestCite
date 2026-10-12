@@ -1,4 +1,4 @@
-import { sellerConfig } from "@/config/seller";
+import { projectConfig } from "@/config/project";
 
 /** Header and hero link to the public source repository. */
 export function SourceLink({
@@ -9,7 +9,7 @@ export function SourceLink({
   className?: string;
 }) {
   return (
-    <a href={sellerConfig.repositoryUrl} rel="noreferrer" className={className}>
+    <a href={projectConfig.repositoryUrl} rel="noreferrer" className={className}>
       {children}
     </a>
   );

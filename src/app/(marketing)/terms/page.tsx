@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { sellerConfig } from "@/config/seller";
+import { projectConfig } from "@/config/project";
 
 export const metadata: Metadata = {
   title: "Terms",
@@ -14,7 +14,7 @@ export default function TermsPage() {
       <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">Project terms</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight">Terms and license</h1>
       <p className="text-muted-foreground mt-4">
-        Last updated October 12, 2026. {sellerConfig.legalName} publishes this project under the MIT License.
+        Last updated October 12, 2026. {projectConfig.legalName} publishes this project under the MIT License.
         This page summarizes how to use the public demo and the source. It is not a substitute for the license text.
       </p>
       <div className="mt-10 space-y-6">
@@ -62,9 +62,9 @@ export default function TermsPage() {
           <CardHeader><CardTitle>No warranty and contact</CardTitle></CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              There is no paid license, refund, or support contract for the source. Questions may be sent to{" "}
-              <a className="text-foreground underline underline-offset-4" href={sellerConfig.supportHref}>
-                {sellerConfig.supportEmail}
+              The source is MIT-licensed with no paid support contract. Questions may be sent to{" "}
+              <a className="text-foreground underline underline-offset-4" href={projectConfig.supportHref}>
+                {projectConfig.supportEmail}
               </a>
               . This summary is not legal advice.
             </p>

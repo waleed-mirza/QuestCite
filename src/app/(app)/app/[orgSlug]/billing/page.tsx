@@ -2,6 +2,7 @@ import { CreditCard } from "lucide-react";
 
 import { AccessDenied } from "@/components/feedback/access-denied";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { getFeatureFlags } from "@/config/feature-flags";
 import { plans } from "@/config/plans";
 import { CheckoutPicker } from "@/features/billing/components/checkout-picker";
 import { getBillingSnapshot } from "@/features/billing/server";
@@ -37,6 +38,7 @@ export default async function BillingPage({
   const plan = plans[snapshot.plan_code];
   const statusLabel = snapshot.subscription_status === "none" ? "Trial workspace" : snapshot.subscription_status.replace("_", " ");
   const renewal = snapshot.renews_at ?? snapshot.trial_ends_at;
+  const { billingConfigured } = getFeatureFlags();
 
   return (
     <div className="mx-auto grid w-full max-w-5xl gap-6">
@@ -80,7 +82,21 @@ export default async function BillingPage({
         </CardContent>
       </Card>
 
-      <CheckoutPicker orgSlug={orgSlug} currentPlan={snapshot.plan_code} />
+      {billingConfigured ? (
+        <CheckoutPicker orgSlug={orgSlug} currentPlan={snapshot.plan_code} />
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>In-app billing is optional</CardTitle>
+            <CardDescription>
+              This deployment has no Lemon Squeezy credentials. Workspaces stay on local trial or free
+              entitlements. To enable Starter/Pro/Agency checkout, set the optional{" "}
+              <code className="text-foreground">LEMON_SQUEEZY_*</code> variables and follow{" "}
+              <code className="text-foreground">docs/billing.md</code>.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      )}
     </div>
   );
 }

@@ -169,7 +169,7 @@ function OverviewPanel({ onReplay }: { onReplay: () => void }) {
   return (
     <div className="grid gap-6">
       <div>
-        <p className="text-primary text-sm font-medium">A buyer-ready workflow in one screen</p>
+        <p className="text-primary text-sm font-medium">A questionnaire workflow in one screen</p>
         <h2 className="mt-1 text-2xl font-semibold tracking-tight">From evidence to defensible answers</h2>
         <p className="text-muted-foreground mt-2 max-w-2xl text-sm leading-relaxed">
           Explore the fictional Northstar Cloud workspace. The answer run below replays stored results locally, so this signed-out tour never sends data to OpenAI or writes to the database.
@@ -204,9 +204,9 @@ function OverviewPanel({ onReplay }: { onReplay: () => void }) {
       </Card>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <JourneyCard number="01" title="Import" body="Map the buyer's workbook while preserving the original structure." />
+        <JourneyCard number="01" title="Import" body="Map the prospect's workbook while preserving the original structure." />
         <JourneyCard number="02" title="Draft" body="Use approved evidence and keep the exact citation beside each draft." />
-        <JourneyCard number="03" title="Review & export" body="Keep a human approval gate before returning the buyer-ready workbook." />
+        <JourneyCard number="03" title="Review & export" body="Keep a human approval gate before returning the completed workbook." />
       </div>
     </div>
   );

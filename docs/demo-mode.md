@@ -1,6 +1,6 @@
 # Demo mode and Northstar Cloud
 
-The repository ships a fictional Northstar Cloud tenant so a buyer can inspect
+The repository ships a fictional Northstar Cloud tenant so a visitor can inspect
 the core workflow without supplying documents, prompts, provider keys, or an
 account. Every fixture carries the exact disclaimer:
 
@@ -52,9 +52,9 @@ emails, passwords, tokens, document text, or answer text.
 
 Use the global `AI_ENABLED` switch and per-organization `ai_drafts_disabled`
 switch for real workspaces. Keep public demo provider operations disabled even
-when production AI is configured; the seller/demo deployment should leave
+when production AI is configured; the public demo deployment should leave
 `AI_ENABLED=false` and `OPENAI_API_KEY` unset. Never use a personal OpenAI key
-on a public seller site. For a deliberate live-AI deployment, isolate the key
+on a public demo site. For a deliberate live-AI deployment, isolate the key
 in a separate provider project with model/rate restrictions and an enforced
 spend limit. For branding and plan changes, follow
 [`customization.md`](customization.md); for customer deployment, follow

@@ -176,7 +176,7 @@ describe("env schema — production gates", () => {
     expect(envSchema.safeParse(env).success).toBe(true);
   });
 
-  it("accepts a production demo environment without storefront checkout URLs", () => {
+  it("accepts a production demo environment without Lemon Squeezy billing keys", () => {
     expect(envSchema.safeParse(VALID_PROD_BASE).success).toBe(true);
   });
 });
