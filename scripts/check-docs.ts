@@ -5,7 +5,6 @@ const root = process.cwd();
 const requiredFiles = [
   "README.md",
   "LICENSE",
-  "LICENSE.md",
   "SECURITY.md",
   "SUPPORT.md",
   "CHANGELOG.md",
@@ -49,8 +48,8 @@ function main(): number {
     return 1;
   }
 
-  const topLevelDocs = ["README.md", "LICENSE.md", "SECURITY.md", "SUPPORT.md", "CHANGELOG.md", "CONTRIBUTING.md"];
-  // LICENSE (no extension) is required for GitHub detection; LICENSE.md stays for docs links.
+  // LICENSE (no extension) is required for GitHub detection; it is not Markdown.
+  const topLevelDocs = ["README.md", "SECURITY.md", "SUPPORT.md", "CHANGELOG.md", "CONTRIBUTING.md"];
   const files = [
     ...topLevelDocs.map((file) => path.join(root, file)),
     ...markdownFiles(path.join(root, "docs")),
@@ -95,7 +94,6 @@ function main(): number {
     ["docs/quickstart.md", "pnpm db:migrate:remote"],
     ["docs/deployment.md", "DEMO_UPLOADS_ENABLED=false"],
     ["docs/demo-mode.md", "DEMO_EMAILS_ENABLED=false"],
-    ["LICENSE.md", "MIT License"],
   ];
   // Plain LICENSE is not Markdown; verify it separately below.
   const missingSnippets = requiredSnippets.filter(([file, snippet]) => !(contentByFile.get(file) ?? "").includes(snippet));

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Removed duplicate `LICENSE.md` (keep plain `LICENSE` for GitHub detection) and updated docs/tests accordingly.
+- Folded Dependabot minor/patch updates and `@types/node` 26; left the TypeScript 6 major bump for a separate merge.
+- Clarified remaining PRD/wireframe “sales page” wording for the MIT open-source release.
 - Released the repository under the MIT License and added a plain `LICENSE` file for GitHub detection.
 - Reworked `/pricing` and marketing open-source copy into a self-host page; removed license-catalog and purchase-proof UI.
 - Documented Lemon Squeezy workspace billing as optional; the app builds and runs without `LEMON_SQUEEZY_*` env vars.

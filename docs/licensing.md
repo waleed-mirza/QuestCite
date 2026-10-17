@@ -13,5 +13,5 @@ There is no separate commercial license, paid source skus, or buyer-support
 contract for the repository. Maintainer contact for license questions:
 <whhtreasures@gmail.com>.
 
-See [`LICENSE`](../LICENSE) (and [`LICENSE.md`](../LICENSE.md)),
-[`SUPPORT.md`](../SUPPORT.md), and [`legal-disclaimers.md`](legal-disclaimers.md).
+See [`LICENSE`](../LICENSE), [`SUPPORT.md`](../SUPPORT.md), and
+[`legal-disclaimers.md`](legal-disclaimers.md).
