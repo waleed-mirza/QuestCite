@@ -61,7 +61,7 @@ Mobile (single column; nav links hidden behind the `sm:` breakpoint, CTA buttons
 
 Annotations:
 - W2: primary CTAs move to `/signup`; add Pricing / FAQ / Docs / Legal links per plan §13 route list and §3 "Included in v1" (the initial legal placeholders were replaced by the WHH Treasures project baseline before release).
-- Required states: none interactive yet; SEO metadata + Open Graph/social card are tested in W7 for the Trust Center and listed as a sales asset in plan §23.
+- Required states: none interactive yet; SEO metadata + Open Graph/social card are tested in W7 for the Trust Center and listed as a release asset in plan §23.
 - Disclaimer that the product is not legal/compliance advice must appear on marketing before launch (plan §23).
 
 ---

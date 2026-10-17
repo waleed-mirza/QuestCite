@@ -45,7 +45,7 @@ Each item below is a v1 commitment (plan §3 "Included in v1", §1 outcomes, §1
 
 ## 4. v1 EXCLUSIONS
 
-Explicitly postponed; must be disclosed on the sales page (plan §3, §25):
+Explicitly postponed; must be disclosed in README / docs / marketing pages (plan §3, §25):
 
 - OCR for scanned/image-only PDFs; scanned-only PDFs as knowledge documents.
 - `.xls`, `.xlsm`, VBA macro, and password-protected workbook support (import or export).
@@ -247,5 +247,5 @@ Traceable to the Week 10 release gate (plan §18 W10), the self-host readiness b
 8. The live demo works without paid services except the controlled AI smoke test (plan §18 W10).
 9. The customer ZIP contains no secrets, private notes, real customer data, or unsupported claims (plan §18 W10).
 10. An operator can clone, install, configure, migrate, seed, test, deploy, rebrand, complete the flagship workflow, publish the sample Trust Center, and switch providers from test to live mode using documentation alone (plan §25).
-11. Every exclusion in §4 is disclosed on the sales page (plan §3, §24).
+11. Every exclusion in §4 is disclosed in README / docs / marketing pages (plan §3, §24).
 12. Every empty/loading/error/permission state has usable UI; every destructive operation has confirmation, permission checks, and an audit record (plan §24, §16).

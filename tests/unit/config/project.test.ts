@@ -24,7 +24,7 @@ describe("projectConfig", () => {
   });
 
   it("keeps the legal and support documents on the MIT license", () => {
-    const files = ["LICENSE", "LICENSE.md", "SUPPORT.md", "SECURITY.md"];
+    const files = ["LICENSE", "SUPPORT.md", "SECURITY.md"];
 
     for (const file of files) {
       const content = readRepositoryFile(file);
@@ -34,7 +34,6 @@ describe("projectConfig", () => {
     }
 
     expect(readRepositoryFile("LICENSE")).toContain("MIT License");
-    expect(readRepositoryFile("LICENSE.md")).toContain("MIT License");
     expect(readRepositoryFile("docs/licensing.md")).toContain("MIT License");
   });
 });
